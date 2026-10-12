@@ -1,0 +1,256 @@
+
+> dati <- read.table("/Users/didzis/Documents/Dati/2013/Tex_faili/PB_gramata_isa/Dati/augi2.txt", 
++   header=TRUE, sep="\t", na.strings="NA", dec=".", strip.white=TRUE)
+
+> library(relimp, pos=4)
+
+> showData(dati, placement='-20+200', font=getRcmdr('logFont'), maxwidth=80, maxheight=30)
+
+> dati2 <- 
++   read.table("/Users/didzis/Documents/Dati/2013/Tex_faili/PB_gramata_isa/Dati/dieta.txt", 
++   header=TRUE, sep="\t", na.strings="NA", dec=".", strip.white=TRUE)
+
+> showData(dati, placement='-20+200', font=getRcmdr('logFont'), maxwidth=80, maxheight=30)
+
+> names(dati)
+[1] "jun.nokr" "jul.nokr" "aug.nokr" "sezona"   "gaisma"   "pH"       "biomasa" 
+
+> cor.test(dati$aug.nokr, dati$biomasa, alternative="two.sided", method="pearson")
+
+	Pearson's product-moment correlation
+
+data:  dati$aug.nokr and dati$biomasa
+t = -0.4942, df = 43, p-value = 0.6237
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.3607254  0.2233113
+sample estimates:
+        cor 
+-0.07514858 
+
+
+> cor.test(dati$aug.nokr, dati$jul.nokr, alternative="two.sided", method="pearson")
+
+	Pearson's product-moment correlation
+
+data:  dati$aug.nokr and dati$jul.nokr
+t = -0.3492, df = 43, p-value = 0.7287
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.3413759  0.2441749
+sample estimates:
+        cor 
+-0.05316985 
+
+
+> cor.test(dati$biomasa, dati$jul.nokr, alternative="two.sided", method="pearson")
+
+	Pearson's product-moment correlation
+
+data:  dati$biomasa and dati$jul.nokr
+t = 2.9332, df = 43, p-value = 0.005361
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.1304166 0.6267355
+sample estimates:
+      cor 
+0.4083194 
+
+
+> cor.test(dati$biomasa, dati$jul.nokr, alternative="two.sided", method="spearman")
+
+	Spearman's rank correlation rho
+
+data:  dati$biomasa and dati$jul.nokr
+S = 10373.21, p-value = 0.03407
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.3166529 
+
+
+> cor.test(dati$biomasa, dati$jul.nokr, alternative="two.sided", method="spearman")
+
+	Spearman's rank correlation rho
+
+data:  dati$biomasa and dati$jul.nokr
+S = 10373.21, p-value = 0.03407
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.3166529 
+
+
+> cor.test(dati$biomasa, dati$jul.nokr, alternative="two.sided", method="spearman")
+
+	Spearman's rank correlation rho
+
+data:  dati$biomasa and dati$jul.nokr
+S = 10373.21, p-value = 0.03407
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.3166529 
+
+
+> library(Hmisc, pos=4)
+
+> rcorr.adjust(dati[,c("aug.nokr","biomasa","gaisma","jul.nokr","jun.nokr","pH")], 
++   type="pearson", use="complete")
+
+ Pearson correlations:
+         aug.nokr biomasa  gaisma jul.nokr jun.nokr      pH
+aug.nokr   1.0000 -0.0751  0.0799  -0.0532   0.3003 -0.1099
+biomasa   -0.0751  1.0000  0.6948   0.4083  -0.1797 -0.0299
+gaisma     0.0799  0.6948  1.0000   0.1149   0.2158 -0.0804
+jul.nokr  -0.0532  0.4083  0.1149   1.0000   0.1080 -0.0535
+jun.nokr   0.3003 -0.1797  0.2158   0.1080   1.0000 -0.1766
+pH        -0.1099 -0.0299 -0.0804  -0.0535  -0.1766  1.0000
+
+ Number of observations: 45 
+
+ Pairwise two-sided p-values:
+         aug.nokr biomasa gaisma jul.nokr jun.nokr pH    
+aug.nokr          0.6237  0.6017 0.7287   0.0450   0.4723
+biomasa  0.6237           <.0001 0.0054   0.2377   0.8456
+gaisma   0.6017   <.0001         0.4524   0.1545   0.5997
+jul.nokr 0.7287   0.0054  0.4524          0.4803   0.7271
+jun.nokr 0.0450   0.2377  0.1545 0.4803            0.2458
+pH       0.4723   0.8456  0.5997 0.7271   0.2458         
+
+ Adjusted p-values (Holm's method)
+         aug.nokr biomasa gaisma jul.nokr jun.nokr pH    
+aug.nokr          1.0000  1.0000 1.0000   0.5852   1.0000
+biomasa  1.0000           <.0001 0.0750   1.0000   1.0000
+gaisma   1.0000   <.0001         1.0000   1.0000   1.0000
+jul.nokr 1.0000   0.0750  1.0000          1.0000   1.0000
+jun.nokr 0.5852   1.0000  1.0000 1.0000            1.0000
+pH       1.0000   1.0000  1.0000 1.0000   1.0000         
+
+> rcorr.adjust(dati[,c("aug.nokr","biomasa","gaisma","jul.nokr","jun.nokr","pH")], 
++   type="pearson", use="complete")
+
+ Pearson correlations:
+         aug.nokr biomasa  gaisma jul.nokr jun.nokr      pH
+aug.nokr   1.0000 -0.0751  0.0799  -0.0532   0.3003 -0.1099
+biomasa   -0.0751  1.0000  0.6948   0.4083  -0.1797 -0.0299
+gaisma     0.0799  0.6948  1.0000   0.1149   0.2158 -0.0804
+jul.nokr  -0.0532  0.4083  0.1149   1.0000   0.1080 -0.0535
+jun.nokr   0.3003 -0.1797  0.2158   0.1080   1.0000 -0.1766
+pH        -0.1099 -0.0299 -0.0804  -0.0535  -0.1766  1.0000
+
+ Number of observations: 45 
+
+ Pairwise two-sided p-values:
+         aug.nokr biomasa gaisma jul.nokr jun.nokr pH    
+aug.nokr          0.6237  0.6017 0.7287   0.0450   0.4723
+biomasa  0.6237           <.0001 0.0054   0.2377   0.8456
+gaisma   0.6017   <.0001         0.4524   0.1545   0.5997
+jul.nokr 0.7287   0.0054  0.4524          0.4803   0.7271
+jun.nokr 0.0450   0.2377  0.1545 0.4803            0.2458
+pH       0.4723   0.8456  0.5997 0.7271   0.2458         
+
+ Adjusted p-values (Holm's method)
+         aug.nokr biomasa gaisma jul.nokr jun.nokr pH    
+aug.nokr          1.0000  1.0000 1.0000   0.5852   1.0000
+biomasa  1.0000           <.0001 0.0750   1.0000   1.0000
+gaisma   1.0000   <.0001         1.0000   1.0000   1.0000
+jul.nokr 1.0000   0.0750  1.0000          1.0000   1.0000
+jun.nokr 0.5852   1.0000  1.0000 1.0000            1.0000
+pH       1.0000   1.0000  1.0000 1.0000   1.0000         
+
+> summary(dati)
+    jun.nokr         jul.nokr        aug.nokr          sezona          gaisma     
+ Min.   : 40.10   Min.   : 26.5   Min.   : 34.80   Min.   :170.6   Min.   :35.00  
+ 1st Qu.: 60.10   1st Qu.: 45.5   1st Qu.: 58.90   1st Qu.:221.4   1st Qu.:55.00  
+ Median : 73.40   Median : 51.6   Median : 66.90   Median :248.0   Median :72.00  
+ Mean   : 71.66   Mean   : 55.9   Mean   : 67.59   Mean   :244.4   Mean   :68.96  
+ 3rd Qu.: 82.40   3rd Qu.: 66.9   3rd Qu.: 76.40   3rd Qu.:268.0   3rd Qu.:85.00  
+ Max.   :106.20   Max.   :103.5   Max.   :100.30   Max.   :303.7   Max.   :96.00  
+       pH           biomasa     
+ Min.   :6.330   Min.   :14.20  
+ 1st Qu.:6.630   1st Qu.:32.90  
+ Median :6.820   Median :39.50  
+ Mean   :6.796   Mean   :38.74  
+ 3rd Qu.:7.010   3rd Qu.:44.30  
+ Max.   :7.190   Max.   :59.90  
+
+> summary(dati)
+    jun.nokr         jul.nokr        aug.nokr          sezona          gaisma     
+ Min.   : 40.10   Min.   : 26.5   Min.   : 34.80   Min.   :170.6   Min.   :35.00  
+ 1st Qu.: 60.10   1st Qu.: 45.5   1st Qu.: 58.90   1st Qu.:221.4   1st Qu.:55.00  
+ Median : 73.40   Median : 51.6   Median : 66.90   Median :248.0   Median :72.00  
+ Mean   : 71.66   Mean   : 55.9   Mean   : 67.59   Mean   :244.4   Mean   :68.96  
+ 3rd Qu.: 82.40   3rd Qu.: 66.9   3rd Qu.: 76.40   3rd Qu.:268.0   3rd Qu.:85.00  
+ Max.   :106.20   Max.   :103.5   Max.   :100.30   Max.   :303.7   Max.   :96.00  
+       pH           biomasa     
+ Min.   :6.330   Min.   :14.20  
+ 1st Qu.:6.630   1st Qu.:32.90  
+ Median :6.820   Median :39.50  
+ Mean   :6.796   Mean   :38.74  
+ 3rd Qu.:7.010   3rd Qu.:44.30  
+ Max.   :7.190   Max.   :59.90  
+
+> library(abind, pos=4)
+
+> library(e1071, pos=4)
+
+> RegModel.1 <- lm(biomasa~jul.nokr, data=dati)
+
+> summary(RegModel.1)
+
+Call:
+lm(formula = biomasa ~ jul.nokr, data = dati)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-20.4684  -3.0860   0.6406   6.2199  14.5953 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 26.17653    4.46586   5.861 5.81e-07 ***
+jul.nokr     0.22465    0.07659   2.933  0.00536 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.514 on 43 degrees of freedom
+Multiple R-squared:  0.1667,	Adjusted R-squared:  0.1473 
+F-statistic: 8.604 on 1 and 43 DF,  p-value: 0.005361
+
+
+> summary(RegModel.1, cor=FALSE)
+
+Call:
+lm(formula = biomasa ~ jul.nokr, data = dati)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-20.4684  -3.0860   0.6406   6.2199  14.5953 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 26.17653    4.46586   5.861 5.81e-07 ***
+jul.nokr     0.22465    0.07659   2.933  0.00536 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.514 on 43 degrees of freedom
+Multiple R-squared:  0.1667,	Adjusted R-squared:  0.1473 
+F-statistic: 8.604 on 1 and 43 DF,  p-value: 0.005361
+
+
+> dati$fitted.RegModel.1 <- fitted(RegModel.1)
+
+> dati$residuals.RegModel.1 <- residuals(RegModel.1)
+
+> dati$rstudent.RegModel.1 <- rstudent(RegModel.1)
+
+> dati$hatvalues.RegModel.1 <- hatvalues(RegModel.1)
+
+> dati$cooks.distance.RegModel.1 <- cooks.distance(RegModel.1)
+
+> dati$obsNumber <- 1:nrow(dati)
+
+> showData(dati, placement='-20+200', font=getRcmdr('logFont'), maxwidth=80, 
++   maxheight=30)
+

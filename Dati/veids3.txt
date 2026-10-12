@@ -1,0 +1,7 @@
+"skirne"	"veids"	"procents"	"skaits"
+"A"	"lauks"	0.85	20
+"A"	"tunelis"	0.37037037037037	27
+"B"	"lauks"	0.56	25
+"B"	"tunelis"	0.4	40
+"C"	"lauks"	0.617647058823529	34
+"C"	"tunelis"	0.0689655172413793	29

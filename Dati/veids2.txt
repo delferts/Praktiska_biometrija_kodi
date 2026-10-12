@@ -1,0 +1,7 @@
+"skirne"	"veids"	"bojats"	"nebojats"
+"A"	"lauks"	17	3
+"A"	"tunelis"	10	17
+"B"	"lauks"	14	11
+"B"	"tunelis"	16	24
+"C"	"lauks"	21	13
+"C"	"tunelis"	2	27
